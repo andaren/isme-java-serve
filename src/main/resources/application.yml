@@ -1,6 +1,11 @@
 spring:
   profiles:
-    active: h2
+    active: sqlite
+  servlet:
+    multipart:
+      location: D:\work\workspace\idea\isme-java-server\files\temp
+      max-file-size: 1MB
+      max-request-size: 10MB
 server:
   port: 8085
 sa-token:
@@ -9,3 +14,29 @@ sa-token:
   jwt-secret-key: 'd0!doc15415B0*4G0`'
 knife4j:
   enable: true
+
+file:
+  dir: D:\work\workspace\idea\isme-java-server\files
+
+# MyBatisPlus Config
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      #主键类型
+      id-type: auto
+      # 默认数据库表下划线命名
+      table-underline: false
+
+logging:
+  level:
+    org.springframework.web: info
+    com.andaren.terzilla: debug
+    cn.binarywang.wx.miniapp: debug

@@ -88,7 +88,7 @@ class RoleServiceImplTest extends ServeApplicationTests {
     void updateRole_with_permission() {
         jdbcTemplate.execute("insert into role values (null, 'update_role', 'update_role', 1)");
         Role role = roleService.lambdaQuery().eq(Role::getCode, "update_role").one();
-        Permission permission = permissionService.lambdaQuery().list().getFirst();
+        Permission permission = permissionService.lambdaQuery().list().get(0);
 
         UpdateRoleRequest updateRoleRequest = new UpdateRoleRequest();
         updateRoleRequest.setPermissionIds(CollUtil.newArrayList(permission.getId()));

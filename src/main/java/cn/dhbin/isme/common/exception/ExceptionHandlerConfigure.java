@@ -91,7 +91,7 @@ public class ExceptionHandlerConfigure {
     @ResponseBody
     @ExceptionHandler
     public R<String> handle(MethodArgumentNotValidException exception) {
-        ObjectError error = exception.getBindingResult().getAllErrors().getFirst();
+        ObjectError error = exception.getBindingResult().getAllErrors().get(0);
         String defaultMessage = error.getDefaultMessage();
         return R.build(new BizException(BizResponseCode.ERR_400, defaultMessage));
     }

@@ -1,11 +1,11 @@
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE `permission`
 (
-    `id`          int(11)      NOT NULL AUTO_INCREMENT,
+    `id`          INTEGER      NOT NULL PRIMARY KEY  AUTOINCREMENT,
     `name`        varchar(255) NOT NULL,
     `code`        varchar(50)  NOT NULL UNIQUE,
     `type`        varchar(255) NOT NULL,
-    `parentId`    int(11)      NULL     DEFAULT NULL,
+    `parentId`    INTEGER(11)      NULL     DEFAULT NULL,
     `path`        varchar(255) NULL     DEFAULT NULL,
     `redirect`    varchar(255) NULL     DEFAULT NULL,
     `icon`        varchar(255) NULL     DEFAULT NULL,
@@ -14,10 +14,9 @@ CREATE TABLE `permission`
     `keepAlive`   tinyint(4)   NULL     DEFAULT NULL,
     `method`      varchar(255) NULL     DEFAULT NULL,
     `description` varchar(255) NULL     DEFAULT NULL,
-    `show`        tinyint(4)   NOT NULL DEFAULT 1 COMMENT '是否展示在页面菜单',
+    `show`        tinyint(4)   NOT NULL DEFAULT 1,
     `enable`      tinyint(4)   NOT NULL DEFAULT 1,
-    `order`       int(11)      NULL     DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    `order`       INTEGER      NULL     DEFAULT NULL
 );
 
 -- ----------------------------
@@ -71,14 +70,13 @@ VALUES (15, 'MeModal', 'TestModal', 'MENU', 9, '/testModal', NULL, 'i-me:dialog'
 DROP TABLE IF EXISTS `profile`;
 CREATE TABLE `profile`
 (
-    `id`       int(11)      NOT NULL AUTO_INCREMENT,
+    `id`       Integer     NOT NULL PRIMARY KEY  AUTOINCREMENT,
     `gender`   int(11)      NULL     DEFAULT NULL,
     `avatar`   varchar(255) NOT NULL DEFAULT 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80',
     `address`  varchar(255) NULL     DEFAULT NULL,
     `email`    varchar(255) NULL     DEFAULT NULL,
     `userId`   int(11)      NOT NULL UNIQUE,
-    `nickName` varchar(10)  NULL     DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    `nickName` varchar(10)  NULL     DEFAULT NULL
 );
 
 -- ----------------------------
@@ -94,11 +92,10 @@ VALUES (1, NULL, 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acaf
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role`
 (
-    `id`     int(11)     NOT NULL AUTO_INCREMENT,
+    `id`     Integer     NOT NULL PRIMARY KEY  AUTOINCREMENT,
     `code`   varchar(50) NOT NULL,
     `name`   varchar(50) NOT NULL,
     `enable` tinyint(4)  NOT NULL DEFAULT 1,
-    PRIMARY KEY (`id`),
     CONSTRAINT unique_code_name unique (`code`, `name`)
 );
 
@@ -154,13 +151,12 @@ VALUES (2, 15);
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
-    `id`         int(11)      NOT NULL AUTO_INCREMENT,
-    `username`   varchar(50)  NOT NULL unique,
+    `id`         Integer      NOT NULL PRIMARY KEY AUTOINCREMENT,
+    `username`   varchar(50)  NOT NULL,
     `password`   varchar(255) NOT NULL,
     `enable`     tinyint(4)   NOT NULL DEFAULT 1,
-    `createTime` datetime(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    `updateTime` datetime(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (`id`)
+    `createTime` datetime(6)  NOT NULL,
+    `updateTime` datetime(6)  NOT NULL
 );
 
 -- ----------------------------
@@ -198,11 +194,11 @@ VALUES (1, 2);
 DROP TABLE IF EXISTS `sys_file`;
 CREATE TABLE `sys_file`
 (
-    `id` bigint(20) NOT NULL,
+    `id` int(20) NOT NULL  PRIMARY KEY ,
     `category` varchar(255) DEFAULT NULL,
     `filePath` varchar(255) DEFAULT NULL,
     `fileName` varchar(255) DEFAULT NULL,
-    `fileSuffix` varchar(255) DEFAULT NULL,
-    `createTime` datetime(6)  NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `fileSuffix` text(255) DEFAULT NULL,
+    `deleteFlag` int NOT null DEFAULT 0,
+    `createTime` datetime(6)  NOT NULL
+)

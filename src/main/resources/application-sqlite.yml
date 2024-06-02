@@ -1,0 +1,13 @@
+spring:
+  # mysql
+  datasource:
+    url: jdbc:sqlite:sqlite/dev/admin.db?date_string_format=yyyy-MM-dd HH:mm:ss
+    username:
+    password:
+    driver-class-name: org.sqlite.JDBC
+
+  sql:
+    # 自动建表建库
+    init:
+      schema-locations: classpath:db/sqlite.sql
+      mode: always

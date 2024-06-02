@@ -31,13 +31,14 @@ public class SaTokenConfigure implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SaInterceptor(handle -> StpUtil.checkLogin()))
-            .addPathPatterns("/**")
-            .excludePathPatterns("/auth/login")
-            .excludePathPatterns("/auth/captcha")
-            .excludePathPatterns("/doc.html")
-            .excludePathPatterns("/webjars/**")
-            .excludePathPatterns("/favicon.ico")
-            .excludePathPatterns("/v3/api-docs/**")
+                .addPathPatterns("/**")
+                .excludePathPatterns("/auth/login")
+                .excludePathPatterns("/auth/captcha")
+                .excludePathPatterns("/doc.html")
+                .excludePathPatterns("/webjars/**")
+                .excludePathPatterns("/favicon.ico")
+                .excludePathPatterns("/v3/api-docs/**")
+                .excludePathPatterns("/file/download/*")
         ;
     }
 
